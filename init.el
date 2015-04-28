@@ -49,7 +49,7 @@
             'yari
             'ibuffer-vc
             'rvm
-            'rinari
+;;            'rinari
             'web-mode
             'feature-mode
             'auto-compile
@@ -201,7 +201,7 @@
 ;; Diable bold and underline faces
 (when (display-graphic-p)
   (menu-bar-mode 1)
-  (set-face-attribute 'default nil :foreground "gray" :font "Inconsolata-13" :height 155))
+  (set-face-attribute 'default nil :foreground "gray" :font "Inconsolata-13" :height 170))
 
 ;; ;; Showing whitespace
 (require 'whitespace)
@@ -247,7 +247,7 @@
 (load "~/.emacs.d/my-functions")
 
 ;; Make CMD work like ALT (on the Mac)
-(setq mac-command-modifier 'meta)
+;; (setq mac-command-modifier 'meta)
 ;; (setq mac-option-modifier 'none)
 ;; (setq mac-option-key-is-meta t)
 ;; (setq mac-right-option-modifier nil)
@@ -257,8 +257,8 @@
 
 ;; Default frame size
 (setq initial-frame-alist
-      '((top . 10) (left . 50) (width . 185) (height . 55)))
-   
+      '((top . 10) (left . 50) (width . 140) (height . 52)))
+
 ;; Making dabbrev a bit nicer
 (setq dabbrev-abbrev-skip-leading-regexp ":")
 (setq dabbrev-backward-only t)
@@ -359,6 +359,8 @@ point reaches the beginning or end of the buffer, stop there."
   (find-file (expand-file-name "init.el" user-emacs-directory)))
 
 ;; Key bindings
+(global-set-key (kbd "C-x RET") 'shell)
+
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
 (global-set-key (kbd "M-f") 'forward-to-word)
@@ -391,10 +393,10 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-<SPC>") 'cycle-spacing)
 (global-set-key [(control ?.)] 'goto-last-change)
 (global-set-key [(control ?,)] 'goto-last-change-reverse)
-(global-set-key (kbd "<down>") (ignore-error-wrapper 'windmove-down))
-(global-set-key (kbd "<up>") (ignore-error-wrapper 'windmove-up))
-(global-set-key (kbd "<left>") (ignore-error-wrapper 'windmove-left))
-(global-set-key (kbd "<right>") (ignore-error-wrapper 'windmove-right))
+;; (global-set-key (kbd "<down>") (ignore-error-wrapper 'windmove-down))
+;; (global-set-key (kbd "<up>") (ignore-error-wrapper 'windmove-up))
+;; (global-set-key (kbd "<left>") (ignore-error-wrapper 'windmove-left))
+;; (global-set-key (kbd "<right>") (ignore-error-wrapper 'windmove-right))
 (define-key isearch-mode-map (kbd "C-<return>") 'isearch-exit-other-end)
 
 ;; Load a personal.el file if it exists
@@ -413,9 +415,11 @@ point reaches the beginning or end of the buffer, stop there."
    (quote
     ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "cdc7555f0b34ed32eb510be295b6b967526dd8060e5d04ff0dce719af789f8e5" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "af9761c65a81bd14ee3f32bc2ffc966000f57e0c9d31e392bc011504674c07d6" "a4f8d45297894ffdd98738551505a336a7b3096605b467da83fae00f53b13f01" "1affe85e8ae2667fb571fc8331e1e12840746dae5c46112d5abb0c3a973f5f5a" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "de2c46ed1752b0d0423cde9b6401062b67a6a1300c068d5d7f67725adc6c3afb" "405fda54905200f202dd2e6ccbf94c1b7cc1312671894bc8eca7e6ec9e8a41a2" "41b6698b5f9ab241ad6c30aea8c9f53d539e23ad4e3963abff4b57c0f8bf6730" "b47a3e837ae97400c43661368be754599ef3b7c33a39fd55da03a6ad489aafee" default)))
  '(feature-cucumber-command "bundle exec cucumber {options} {feature}")
+ '(mac-option-modifier (quote meta))
  '(magit-emacsclient-executable "/usr/local/bin/emacsclient")
  '(magit-restore-window-configuration t)
  '(magit-server-window-for-commit nil)
+ '(magit-use-overlays nil)
  '(rspec-spec-command "rspec")
  '(rspec-use-bundler-when-possible nil)
  '(rspec-use-rvm t)
@@ -445,3 +449,5 @@ point reaches the beginning or end of the buffer, stop there."
  '(whitespace-space ((t nil))))
 (put 'downcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+
+(setq magit-last-seen-setup-instructions "1.4.0")
