@@ -205,7 +205,7 @@
 
 ;; ;; Showing whitespace
 (require 'whitespace)
-(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-line-column 132) ;; limit line length
 ;;(setq whitespace-style '(spaces tabs newline space-mark tab-mark newline-mark lines-tail))
 (setq whitespace-style '(spaces tabs newline space-mark tab-mark newline-mark face lines-tail))
 (setq whitespace-display-mappings
@@ -245,6 +245,9 @@
 
 ;; Custom functions
 (load "~/.emacs.d/my-functions")
+
+;; web-mode
+(load "~/.emacs.d/my-web-mode")
 
 ;; Make CMD work like ALT (on the Mac)
 ;; (setq mac-command-modifier 'meta)
@@ -402,7 +405,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;; Load a personal.el file if it exists
 ;; to be able to override stuff in here
 (if (file-exists-p "~/.emacs.d/personal.el")
-    (load "personal"))
+    (load "~/.emacs.d/personal"))
 
 (server-start)
 
@@ -411,9 +414,11 @@ point reaches the beginning or end of the buffer, stop there."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(comint-use-prompt-regexp nil)
  '(custom-safe-themes
    (quote
-    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "cdc7555f0b34ed32eb510be295b6b967526dd8060e5d04ff0dce719af789f8e5" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "af9761c65a81bd14ee3f32bc2ffc966000f57e0c9d31e392bc011504674c07d6" "a4f8d45297894ffdd98738551505a336a7b3096605b467da83fae00f53b13f01" "1affe85e8ae2667fb571fc8331e1e12840746dae5c46112d5abb0c3a973f5f5a" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "de2c46ed1752b0d0423cde9b6401062b67a6a1300c068d5d7f67725adc6c3afb" "405fda54905200f202dd2e6ccbf94c1b7cc1312671894bc8eca7e6ec9e8a41a2" "41b6698b5f9ab241ad6c30aea8c9f53d539e23ad4e3963abff4b57c0f8bf6730" "b47a3e837ae97400c43661368be754599ef3b7c33a39fd55da03a6ad489aafee" default)))
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "cdc7555f0b34ed32eb510be295b6b967526dd8060e5d04ff0dce719af789f8e5" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "af9761c65a81bd14ee3f32bc2ffc966000f57e0c9d31e392bc011504674c07d6" "a4f8d45297894ffdd98738551505a336a7b3096605b467da83fae00f53b13f01" "1affe85e8ae2667fb571fc8331e1e12840746dae5c46112d5abb0c3a973f5f5a" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "de2c46ed1752b0d0423cde9b6401062b67a6a1300c068d5d7f67725adc6c3afb" "405fda54905200f202dd2e6ccbf94c1b7cc1312671894bc8eca7e6ec9e8a41a2" "41b6698b5f9ab241ad6c30aea8c9f53d539e23ad4e3963abff4b57c0f8bf6730" "b47a3e837ae97400c43661368be754599ef3b7c33a39fd55da03a6ad489aafee" default)))
+ '(explicit-bash-args (quote ("--login" "--noediting" "-i")))
  '(feature-cucumber-command "bundle exec cucumber {options} {feature}")
  '(mac-option-modifier (quote meta))
  '(magit-emacsclient-executable "/usr/local/bin/emacsclient")
@@ -424,7 +429,8 @@ point reaches the beginning or end of the buffer, stop there."
  '(rspec-use-bundler-when-possible nil)
  '(rspec-use-rvm t)
  '(rspec-use-spring-when-possible t)
- '(scss-compile-at-save nil))
+ '(scss-compile-at-save nil)
+ '(whitespace-line-column 132))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -439,6 +445,7 @@ point reaches the beginning or end of the buffer, stop there."
  '(erb-face ((t nil)))
  '(erb-out-delim-face ((t (:foreground "#aaffff"))))
  '(error ((t (:foreground "pink2" :underline nil :weight normal))))
+ '(explicit-bash-args (quote ("--login" "--noediting" "-i")))
  '(helm-source-header ((t (:background "#22083397778B" :foreground "white"))))
  '(magit-item-highlight ((t nil)))
  '(vertical-border ((((type tty)) (:inherit gray9))))
@@ -451,3 +458,8 @@ point reaches the beginning or end of the buffer, stop there."
 (put 'dired-find-alternate-file 'disabled nil)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+
